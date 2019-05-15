@@ -132,7 +132,7 @@ export default {
                 name:'',
                 time:''
             },
-            caseTabDialog:true,
+            caseTabDialog:false,
             tabActiveName:'systemWait',
             systemTabForm:{
                 switchValue:true,
