@@ -33,7 +33,7 @@
                     <el-col :span="4">
                         <div class="grid-content bg-purple-dark">案件列表</div>
                     </el-col>
-                     <el-col :span="5" offset="15">
+                     <el-col :span="5" :offset="15">
                         <div class="grid-content bg-purple-dark">
                             <el-button type="primary" @click.native.prevent="setAssign" plain>分配配置</el-button>
                             <el-button type="primary" @click.native.prevent="dealOrder" plain>处理中分单</el-button>
@@ -60,7 +60,7 @@
 
         <!-- 案件分配配置Dialog -->
         <el-dialog title="案件分配配置" :visible.sync="caseTabDialog" class="myDialog">
-            <el-tabs v-model="tabActiveName" @tab-click="handleClick">
+            <el-tabs v-model="tabActiveName" @tab-click="handleClick" type="border-card">
                 <el-tab-pane label="系统分配待分配" name="systemWait">
                     <el-row class="systemWaitRow">
                         <el-col :span="3">对应规则</el-col>
@@ -87,7 +87,7 @@
                             <el-form-item label="暂不分配:" class="redItem">
                                 <el-col :span="4">逾期天数小于</el-col>
                                 <el-col :span="3"><el-input size="mini" v-model="systemTabForm.inputDay"></el-input></el-col>
-                                <el-col :span="4" offset="1">天的案件</el-col>
+                                <el-col :span="4" :offset="1">天的案件</el-col>
                             </el-form-item>
                             <el-form-item label="分配给组:">
                                 <el-select v-model="postForm.region" size="mini" placeholder="请选择">
@@ -97,8 +97,6 @@
                             </el-form-item>
                         </el-form>
                     </el-row>
-                    
-
                 </el-tab-pane>
 
                 <el-tab-pane label="手动分配待分配" name="manualWait">
@@ -114,6 +112,13 @@
                         <el-col :span="20">注：系统分配开启后每日上午09:00按照已配置的具体规则开始执行</el-col>
                     </el-row>
                 </el-tab-pane>
+                
+                 <el-row>
+                    <el-col class="dialogCenter">
+                        <el-button type="success" @click.native.prevent="caseTabDialog = false">保 存</el-button>
+                        <el-button @click.native.prevent="caseTabDialog = false">关 闭</el-button>
+                    </el-col>
+                </el-row>
 
             </el-tabs>
         </el-dialog>
@@ -132,6 +137,7 @@ export default {
                 name:'',
                 time:''
             },
+            dailyTable:[{}],
             caseTabDialog:false,
             tabActiveName:'systemWait',
             systemTabForm:{
@@ -150,7 +156,9 @@ export default {
 
         },
         handleClick(tab, event) {   //  切换tabs
-
+            console.log(tab)
+            console.log('111')
+            console.log(event)
         }
         
     }
@@ -162,6 +170,9 @@ export default {
     .myDialog{
         .el-tabs__header{
             margin: 0px !important;
+        }
+        .el-tabs__content{
+            padding: 0px 0px 20px 0px;
         }
     }
     .redItem .el-form-item__label{
@@ -200,6 +211,10 @@ export default {
         }
         .systemWaitRow2{
             margin-top: 20px;
+        }
+        .dialogCenter{
+            margin-top: 30px;
+            text-align: center;
         }
     }
 </style>
