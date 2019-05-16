@@ -156,8 +156,6 @@ export default {
 
         },
         handleClick(tab, event) {   //  切换tabs
-            console.log(tab)
-            console.log('111')
             console.log(event)
         }
         
