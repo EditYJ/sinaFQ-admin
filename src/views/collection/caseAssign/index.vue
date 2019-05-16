@@ -59,7 +59,7 @@
         </div>
 
         <!-- 案件分配配置Dialog -->
-        <el-dialog title="案件分配配置" :visible.sync="caseTabDialog" class="myDialog">
+        <el-dialog title="案件分配配置" :visible.sync="caseTabDialog" class="myDialog" top="5vh">
             <el-tabs v-model="tabActiveName" @tab-click="handleClick" type="border-card">
                 <el-tab-pane label="系统分配待分配" name="systemWait">
                     <el-row class="systemWaitRow">
@@ -104,12 +104,52 @@
                         <el-col :span="3">对应规则</el-col>
                         <el-col :span="20">注：手动分配未分配开启后，系统自动分配任务将禁用</el-col>
                     </el-row>
+                    <el-row class="systemWaitRow2">
+                        <el-form ref="systemTabForm" :model="systemTabForm" label-width="80px">
+                            <el-form-item label="启用状态:">
+                                <el-switch
+                                    v-model="systemTabForm.switchValue">
+                                </el-switch>
+                            </el-form-item>
+                            <el-form-item label="分配单位:">
+                                 <el-radio-group v-model="systemTabForm.unit">
+                                    <el-radio label="按案件金额分配"></el-radio>
+                                    <el-radio label="按案件数量分配"></el-radio>
+                                </el-radio-group>
+                            </el-form-item>
+                            <el-form-item label="分配方式:">
+                                 <el-radio-group v-model="systemTabForm.methods">
+                                    <el-radio label="尽可能平分"></el-radio>
+                                </el-radio-group>
+                            </el-form-item>
+                            <el-form-item label="暂不分配:" class="redItem">
+                                <el-col :span="4">逾期天数小于</el-col>
+                                <el-col :span="3"><el-input size="mini" v-model="systemTabForm.inputDay"></el-input></el-col>
+                                <el-col :span="4" :offset="1">天的案件</el-col>
+                            </el-form-item>
+                        </el-form>
+                    </el-row>
                 </el-tab-pane>
 
                 <el-tab-pane label="手动分配处理中" name="manualDoing">
                     <el-row class="systemWaitRow">
                         <el-col :span="3">对应规则</el-col>
                         <el-col :span="20">注：系统分配开启后每日上午09:00按照已配置的具体规则开始执行</el-col>
+                    </el-row>
+                    <el-row>
+                        <el-form ref="systemTabForm" :model="systemTabForm" label-width="80px">
+                            <el-form-item label="分配单位:">
+                                    <el-radio-group v-model="systemTabForm.unit">
+                                    <el-radio label="按案件金额分配"></el-radio>
+                                    <el-radio label="按案件数量分配"></el-radio>
+                                </el-radio-group>
+                            </el-form-item>
+                            <el-form-item label="分配方式:">
+                                    <el-radio-group v-model="systemTabForm.methods">
+                                    <el-radio label="尽可能平分"></el-radio>
+                                </el-radio-group>
+                            </el-form-item>
+                        </el-form>
                     </el-row>
                 </el-tab-pane>
                 
@@ -121,6 +161,36 @@
                 </el-row>
 
             </el-tabs>
+        </el-dialog>
+
+        <!-- 手动分配待分配 -->
+        <el-dialog :visible.sync="waitAssignDialog">
+            <template slot="title">
+                <span style="margin-right:5px;font-weight:bold;">手动分配待分配</span>
+                <span class="title-name">有效待分配案件:{{assignCount}}</span>
+            </template>
+            <el-form ref="waitAssignForm" :model="waitAssignForm" label-width="100px">
+                <el-form-item label="催收组筛选">
+                    <el-select v-model="waitAssignForm.region" placeholder="全部">
+                        <el-option label="全部" value="all"></el-option>
+                        <el-option label="区域一" value="shanghai"></el-option>
+                        <el-option label="区域二" value="beijing"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item>
+                    <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选</el-checkbox>
+                        <span>已选择11人</span>
+                        <el-checkbox-group @change="handleCheckedChange">
+                            <el-checkbox label="复选框 A"></el-checkbox>
+                            <el-checkbox label="复选框 B"></el-checkbox>
+                            <el-checkbox label="复选框 C"></el-checkbox>
+                    </el-checkbox-group>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button type="success" @click="waitAssignDialog = false">确 定</el-button>
+                <el-button @click="waitAssignDialog = false">取 消</el-button>
+            </span>
         </el-dialog>
 
     </div>
@@ -139,12 +209,16 @@ export default {
             },
             dailyTable:[{}],
             caseTabDialog:false,
+            waitAssignDialog:false,
+            assignCount:44,
             tabActiveName:'systemWait',
             systemTabForm:{
                 switchValue:true,
                 inputDay:'',
             },
             manualTabForm:{},
+            waitAssignForm:{},
+            checkedCities:{},
             
         }
     },
@@ -153,10 +227,16 @@ export default {
             this.caseTabDialog = true
         },
         dealOrder() { // 处理中分单
-
+            this.waitAssignDialog = true
         },
         handleClick(tab, event) {   //  切换tabs
             console.log(event)
+        },
+        handleCheckAllChange(val) { // 全选
+            console.log(val)
+        },
+        handleCheckedChange() { // 选择
+            console.log(val)
         }
         
     }
