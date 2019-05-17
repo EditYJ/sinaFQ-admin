@@ -13,7 +13,10 @@ export function validUsername(str) {
  */
 
 export function isvalidUsername(str) {
-  return true
+  const username = str
+  if (username.length > 4 && username.length < 20) {
+    return true
+  } else return false
 }
 
 /**
