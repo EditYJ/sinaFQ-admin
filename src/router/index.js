@@ -378,19 +378,31 @@ export const constantRoutes = [
     ]
   },
 
-  //  运营
+  //  公共
   {
-    path: '/form',
+    path: '/public',
     component: Layout,
+    redirect: '/public/repaySetting',
+    name: 'public',
+    alwaysShow: true,
+    meta: { title: '公共', icon: 'money' },
     children: [
       {
-        path: 'index',
-        name: '运营',
-        component: () => import('@/views/dashboard/index'),
-        meta: { title: '运营', icon: 'form' }
+        path: 'repaySetting',
+        name: 'repaySetting',
+        meta: { title: '还款管理', icon: 'user' },
+        component: () => import('@/views/public/repaySetting') // Parent router-view
+      },
+      {
+        path: 'repayDetail',
+        name: 'repayDetail',
+        hidden: true,
+        meta: { title: '还款详情', icon: 'user' },
+        component: () => import('@/views/public/repayDetail') // Parent router-view
       }
     ]
   },
+
   //  资产
   {
     path: '/form',

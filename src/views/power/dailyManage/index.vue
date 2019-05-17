@@ -61,8 +61,6 @@
             </el-main>
             </el-container>
 
-
-
         </div>
 
     </div>
@@ -79,13 +77,7 @@ export default {
                 name:'',
                 time:''
             },
-            // dailyTable:[{
-            //     account:'',
-            //     name:'',
-            //     time:'',
-            //     ip:'',
-            //     history:''
-            // }]
+            dailyTable:[{}]
         }
     },
     methods:{
@@ -97,18 +89,18 @@ export default {
 
 
 <style lang="scss" scoped>
-        .dailyList{
-            margin-top: 20px;
-            .el-header{
-                height: 58px;
-                line-height: 58px;
-                font-size: 16px;
-                font-weight: bold;
-                background: rgba(0,0,0,0.1);
-                padding: 0px 10px;
-            }
-             .el-main{
-                padding:0px;
-             }
+    .dailyList{
+        margin-top: 20px;
+        .el-header{
+            height: 58px;
+            line-height: 58px;
+            font-size: 16px;
+            font-weight: bold;
+            background: rgba(0,0,0,0.1);
+            padding: 0px 10px;
         }
+            .el-main{
+            padding:0px;
+            }
+    }
 </style>
