@@ -5,9 +5,9 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL:'/api', // url = base url + request url  process.env.VUE_APP_BASE_API  
+  baseURL: '/api', // url = base url + request url  process.env.VUE_APP_BASE_API
   withCredentials: true, // send cookies when cross-domain requests
-  timeout: 100*1000 // 请求超时时间
+  timeout: 100 * 1000 // 请求超时时间
 })
 
 // request interceptor
@@ -30,7 +30,7 @@ service.interceptors.request.use(
     return Promise.reject(error)
   }
 )
- 
+
 // response interceptor
 service.interceptors.response.use(
   response => {

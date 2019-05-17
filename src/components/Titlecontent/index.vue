@@ -1,35 +1,34 @@
 <template>
-    <div>
-        <el-row class="mateTitle">
-            <el-col :span="21">
-                <div class="grid-content bg-purple-dark">{{pageName}}</div>
-            </el-col>
-            <el-col :span="2" :offset="1">
-                <el-button type="primary" icon="el-icon-refresh" @click="reload">刷新</el-button>
-            </el-col>
-        </el-row>
-    </div>
+  <div>
+    <el-row class="mateTitle">
+      <el-col :span="21">
+        <div class="grid-content bg-purple-dark">{{ pageName }}</div>
+      </el-col>
+      <el-col :span="2" :offset="1">
+        <el-button type="primary" icon="el-icon-refresh" @click="reload">刷新</el-button>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
 export default {
-    data(){
-        return{
-            pageName:''
-        }
-    },
-    created(){
-        this.pageName = this.$route.meta.title
-    },
-    methods:{
-        reload(){
-            location.reload()
-        }
+  data() {
+    return {
+      pageName: ''
     }
-    
+  },
+  created() {
+    this.pageName = this.$route.meta.title
+  },
+  methods: {
+    reload() {
+      location.reload()
+    }
+  }
+
 }
 </script>
-
 
 <style lang="scss" scoped>
     .mateTitle{

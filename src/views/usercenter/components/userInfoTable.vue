@@ -1,22 +1,22 @@
 <template>
-    <div class="myTableCom">
-        <el-col :span="12">
-            <el-col :span="10">
-                <div class="bg-purple">{{tableName}}</div>
-            </el-col>
-            <el-col :span="14">
-                <div class="bg-purple bg-normal">
-                    {{tableData}}
-                    <slot name="userbtn" class="userbtn"></slot>
-                </div>
-            </el-col>
-        </el-col>
-    </div>
+  <div class="myTableCom">
+    <el-col :span="12">
+      <el-col :span="10">
+        <div class="bg-purple">{{ tableName }}</div>
+      </el-col>
+      <el-col :span="14">
+        <div class="bg-purple bg-normal">
+          {{ tableData }}
+          <slot name="userbtn" class="userbtn" />
+        </div>
+      </el-col>
+    </el-col>
+  </div>
 </template>
 
 <script>
 export default {
-    props:['tableName','tableData'],
+  props: ['tableName', 'tableData']
 }
 </script>
 

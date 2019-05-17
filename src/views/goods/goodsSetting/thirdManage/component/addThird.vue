@@ -1,23 +1,23 @@
 <template>
-    <div>
-        <el-dialog :visible.sync="addDialog" class="addDialogTitle">
-            <template slot="title">
-                <span>新增/编辑 平台</span>
-                <span>*</span>
-                <span>为必填字段</span>
-            </template>
-            
-        </el-dialog>
-    </div>
+  <div>
+    <el-dialog :visible.sync="addDialog" class="addDialogTitle">
+      <template slot="title">
+        <span>新增/编辑 平台</span>
+        <span>*</span>
+        <span>为必填字段</span>
+      </template>
+
+    </el-dialog>
+  </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            addDialog:false
-        }
+  data() {
+    return {
+      addDialog: false
     }
+  }
 }
 </script>
 

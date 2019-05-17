@@ -1,9 +1,10 @@
+/* eslint-disable no-empty */
 /**
  * 工具类
  * @return {[type]} [description]
  */
 var util = {
-  version: '2.0.0'
+  version: '1.0.0'
 }
 
 /**
@@ -58,7 +59,7 @@ util.transTime = function(str) {
   const h = time.getHours()
   const mm = time.getMinutes()
   const s = time.getSeconds()
-  return y+'-'+add0(m)+'-'+add0(d)+' '+add0(h)+':'+add0(mm)+':'+add0(s);
+  return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s)
   // return y + '年' + add0(m) + '月' + add0(d) + '日'
 }
 
@@ -379,6 +380,7 @@ util.encodeBase64 = function(mingwen, times) {
     var vt = times + ''
     num = parseInt(vt)
   }
+  // eslint-disable-next-line no-empty
   if (typeof mingwen === 'undefined' || mingwen === null || mingwen === '') {
   } else {
     util.base64.utf8encode = true
@@ -446,18 +448,18 @@ util.URLencode = function(value) {
 
 /* 验证中文、英文、数字字符 */
 util.validateChart = function(value) {
-    const reg = /[^%&^'*#@"~;=?$\x22]+/
-    return reg.test(value)
+  const reg = /[^%&^'*#@"~;=?$\x22]+/
+  return reg.test(value)
 }
 /* 验证正整数 >0 */
 util.validateIsIntGt = function(str) {
-    const reg = /^([1-9]\d*)$/
-    return reg.test(str)
+  const reg = /^([1-9]\d*)$/
+  return reg.test(str)
 }
 /* 验证英文、数字字符 */
 util.validateAZ09Chart = function(value) {
-    const reg = /^[A-Za-z0-9]+$/
-    return reg.test(value)
+  const reg = /^[A-Za-z0-9]+$/
+  return reg.test(value)
 }
 // 按enter查询
 // util.keyupEnter =function(handleFilter){

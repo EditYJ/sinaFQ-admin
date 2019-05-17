@@ -23,12 +23,11 @@ export function logout() {
   })
 }
 
-
 // 测试获取用户列表
 export function getUserList(data) {
   return request({
     url: '/searchUserInfo',
-    method:'post',
+    method: 'post',
     data
   })
 }

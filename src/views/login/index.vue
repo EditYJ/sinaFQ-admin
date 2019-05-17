@@ -1,5 +1,6 @@
 <template>
   <div class="login-container">
+    <vue-particles class="vue-particles" color="#dedede" :particleOpacity="0.7" :particlesNumber="80" shapeType="circle" :particleSize="4" linesColor="#dedede" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150" :moveSpeed="3" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push"></vue-particles>
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
@@ -102,7 +103,7 @@ export default {
       })
     },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {  //  验证表单
+      this.$refs.loginForm.validate(valid => { //  验证表单
         if (valid) {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
@@ -137,6 +138,12 @@ $cursor: #fff;
 
 /* reset element-ui css */
 .login-container {
+  .vue-particles{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background:#151C2A;
+  }
   .el-input {
     display: inline-block;
     height: 47px;

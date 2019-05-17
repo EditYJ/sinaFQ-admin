@@ -1,5 +1,3 @@
-
-
 /**
  * @param {string} str
  * @returns {Boolean}
@@ -34,7 +32,7 @@ export function validateUpperCase(str) {
   const reg = /^[A-Z]+$/
   return reg.test(str)
 }
- 
+
 /* 大小写字母*/
 export function validatAlphabets(str) {
   const reg = /^[A-Za-z]+$/
