@@ -8,6 +8,15 @@ export function validUsername(str) {
 }
 
 /**
+ * @param {string} str
+ * @returns {Boolean}
+ */
+
+export function isvalidUsername(str) {
+  return true
+}
+
+/**
  * @param {string} path
  * @returns {Boolean}
  */

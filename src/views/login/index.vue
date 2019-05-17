@@ -49,26 +49,27 @@
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
+import { isvalidUsername } from '@/utils/validate'
 import { getUserList } from '@/api/user'
 
 export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
+      if (!isvalidUsername(value)) {
+        callback(new Error('请输入正确的用户名'))
       } else {
         callback()
       }
     }
-    const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+    const validatePass = (rule, value, callback) => {
+      if (value.length < 5) {
+        callback(new Error('密码不能小于5位'))
       } else {
         callback()
       }
     }
+
     return {
       loginForm: {
         username: 'admin',
@@ -76,7 +77,7 @@ export default {
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        password: [{ required: true, trigger: 'blur', validator: validatePass }]
       },
       loading: false,
       passwordType: 'password',
