@@ -403,20 +403,20 @@ export const constantRoutes = [
     ]
   },
 
-  //  资产
+  //  合同系统
   {
     path: '/form',
     component: Layout,
     children: [
       {
         path: 'index',
-        name: '资产',
+        name: '合同系统',
         component: () => import('@/views/dashboard/index'),
-        meta: { title: '资产', icon: 'form' }
+        meta: { title: '合同系统', icon: 'form' }
       }
     ]
   },
-  //  报表
+  //  消息模版
   {
     path: '/form',
     component: Layout,
@@ -425,10 +425,24 @@ export const constantRoutes = [
         path: 'index',
         name: 'table',
         component: () => import('@/views/dashboard/index'),
-        meta: { title: '报表', icon: 'form' }
+        meta: { title: '消息模版', icon: 'form' }
       }
     ]
   },
+  // 费率系统
+  {
+    path: '/form',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'table',
+        component: () => import('@/views/dashboard/index'),
+        meta: { title: '费率系统', icon: 'form' }
+      }
+    ]
+  },
+
   //  权限
   {
     path: '/power',
