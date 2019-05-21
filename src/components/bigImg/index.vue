@@ -17,7 +17,10 @@ export default {
         }
     },
     methods : {
-
+      bigImg(index) {
+        this.bigImgSrc = this.index
+        this.bigImgShow = true
+      },
     }
 }
 </script>

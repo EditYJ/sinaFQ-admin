@@ -24,7 +24,7 @@
         </template>
         <el-row class="btmBtn">
           <el-col :span="24">
-            <el-button type="danger" @click="backPage">关闭</el-button>
+            <el-button type="danger" @click.native.prevent="backPage">关闭</el-button>
           </el-col>
         </el-row>
       </el-main>
@@ -46,11 +46,11 @@ export default {
     }
   },
   methods: {
-    handleClick: (val) => {
+    handleClick (val) {
       const tabName = val.name
       console.log(tabName)
     },
-    backPage: () => {
+    backPage () {
       this.$router.go(-1)
     }
   }

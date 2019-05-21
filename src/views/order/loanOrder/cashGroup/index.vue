@@ -98,8 +98,8 @@
                   <el-button size="mini" type="primary">详情</el-button>
                   <el-button size="mini" type="danger" @click.native.prevent="cancelReason">取消原因</el-button>
                   <!-- <el-button size="mini" type="warning" @click.native.prevent="cancelGroup">取消组包</el-button>
-                                    <el-button size="mini" type="success">提交组包</el-button>
-                                    <el-button size="mini" type="danger" @click.native.prevent="failReason">失败原因</el-button> -->
+                      <el-button size="mini" type="success">提交组包</el-button>
+                      <el-button size="mini" type="danger" @click.native.prevent="failReason">失败原因</el-button> -->
                 </el-button-group>
               　　　　</template>
             </el-table-column>

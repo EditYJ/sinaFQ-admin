@@ -77,7 +77,7 @@
     </el-container>
 
     <!-- 新增/修改员工对话框 -->
-    <addEmployeeForm ref="addemployeeform" />
+    <add-employee-form ref="addemployeeform" />
   </div>
 </template>
 
