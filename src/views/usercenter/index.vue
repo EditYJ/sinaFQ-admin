@@ -7,9 +7,9 @@
           <template slot="title">
             <el-col :span="4">筛选查询</el-col>
             <el-col :span="4" :offset="10"><div class="grid-content bg-purple" /></el-col>
-            <el-button size="small" type="primary" plain @click.stop="queryGoods">查询</el-button>
-            <el-button size="small" type="primary" plain @click.stop="resetQuery">重置</el-button>
-            <el-button size="small" type="primary" plain @click.stop="topQuery">高级检索</el-button>
+            <el-button type="primary" plain @click.stop="queryGoods">查询</el-button>
+            <el-button type="primary" plain @click.stop="resetQuery">重置</el-button>
+            <el-button type="primary" plain @click.stop="topQuery">高级检索</el-button>
             </el-col>
           </template>
           <el-row>
@@ -189,7 +189,13 @@ export default {
     queryGoods () { // 查询
     
     },
-    resetQuery () {},
+    resetQuery () { // 重置
+    
+    },
+    topQuery () { // 高级检索
+    
+    },
+
   }
 }
 </script>
