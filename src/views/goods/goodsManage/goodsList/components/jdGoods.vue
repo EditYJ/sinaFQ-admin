@@ -21,7 +21,7 @@
             </el-col>
             <el-col :span="8" offset="1">
               <el-form-item label="商品类目:">
-                <el-select v-model="postForm.goodsType1" size="mini" placeholder="一级类目">
+                <el-select v-model="postForm.goodsType1" size="small" placeholder="一级类目">
                   <el-option label="区域一" value="shanghai" />
                   <el-option label="区域二" value="beijing" />
                 </el-select>
@@ -69,7 +69,7 @@
             <el-table-column prop="goodsId" label="商品编号" width="100" align="center" />
             <el-table-column prop="goodsPic" label="商品主图" width="120" align="center">
               <template scope="scope">
-                <img :src="scope.row.goodsPic" width="60" height="60">
+                <img :src="scope.row.goodsPic" width="60" height="60" @mouseenter="bigImg(scope.row.goodsPic)">
               </template>
             </el-table-column>
             <el-table-column label="商品名称/品牌" width="140" align="center">
@@ -118,6 +118,14 @@
         </template>
       </el-main>
     </el-container>
+
+    <!-- 点击放大图片 -->
+    <div class="pop-box" v-show="bigImgShow" @click="bigImgShow = !bigImgShow">
+      <div class="imgPopBox">
+        <img :src="bigImgSrc">
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -126,6 +134,8 @@ export default {
   data() {
     return {
       activeNames: ['1'],
+      bigImgShow:false,
+      bigImgSrc:'',
       postForm: {
         name: '',
         goodsType1: '',
@@ -149,20 +159,40 @@ export default {
     }
   },
   methods: {
-    queryGoods() {},
-    resetQuery() {},
+    queryGoods () {},
+    resetQuery () {},
     topQuery() {},
-    resetGoods() {},
-    modifyGoods() {},
-    hoverGoodsImg() {
-      alert('1')
-    }
+    resetGoods () {},
+    modifyGoods () {},
+    bigImg(val) {
+      this.bigImgSrc = val
+      this.bigImgShow = true
+    },
   }
 
 }
 </script>
 
 <style lang="scss" scoped>
-
+  .pop-box{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100000;
+    background-color: rgba(0,0,0,.6);
+  }
+  .imgPopBox{
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+  }
+  .imgPopBox img {
+    width: 500px;
+  }
 </style>
 

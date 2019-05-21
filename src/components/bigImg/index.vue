@@ -17,8 +17,8 @@ export default {
         }
     },
     methods : {
-      bigImg(index) {
-        this.bigImgSrc = this.index
+      bigImg(val) {
+        this.bigImgSrc = val
         this.bigImgShow = true
       },
     }

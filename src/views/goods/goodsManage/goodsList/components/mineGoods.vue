@@ -76,7 +76,7 @@
             <el-table-column prop="goodsId" label="商品编号" width="100" align="center" />
             <el-table-column prop="goodsPic" label="商品主图" width="120" align="center">
               <template scope="scope">
-                <img :src="scope.row.goodsPic" width="60" height="60">
+                <img :src="scope.row.goodsPic" width="60" height="60" @mouseenter="bigImg(scope.row.goodsPic)">
               </template>
             </el-table-column>
             <el-table-column label="商品名称/品牌" width="140" align="center">
@@ -192,6 +192,13 @@
         <el-button @click="modifyDialog = false">取 消</el-button>
       </span>
     </el-dialog>
+
+    <!-- 点击放大图片 -->
+    <div class="pop-box" v-show="bigImgShow" @click="bigImgShow = !bigImgShow">
+      <div class="imgPopBox">
+        <img :src="bigImgSrc">
+      </div>
+    </div>
   </div>
 </template>
 
@@ -200,6 +207,8 @@ export default {
   data() {
     return {
       activeNames: ['1'],
+      bigImgSrc:'',
+      bigImgShow:false,
       postForm: {
         name: '',
         goodsType1: '',
@@ -243,7 +252,11 @@ export default {
     },
     lookSku() {
       this.goodsMsgDialog = true
-    }
+    },
+    bigImg(val) {
+      this.bigImgSrc = val
+      this.bigImgShow = true
+    },
   }
 
 }
@@ -260,5 +273,25 @@ export default {
             margin-left: 5px;
         }
     }
+    .pop-box{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100000;
+    background-color: rgba(0,0,0,.6);
+  }
+  .imgPopBox{
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+  }
+  .imgPopBox img {
+    width: 500px;
+  }
 </style>
 

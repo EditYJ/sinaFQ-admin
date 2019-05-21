@@ -111,7 +111,6 @@ export default {
     addEmployee() {
       this.$refs.addemployeeform.editDiglog = true
     }
-
   }
 }
 </script>

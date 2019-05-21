@@ -68,7 +68,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/goods/goodsManage/goodsList',
     name: 'Goods',
-    meta: { title: '商品', icon: 'shopmall' },
+    meta: { title: '商品', icon: 'shoppingCard' },
     children: [
       {
         path: 'goodsManage',
@@ -247,7 +247,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/trial/trialManage/teamDeploy',
     name: 'trial',
-    meta: { title: '信审', icon: 'shopmall' },
+    meta: { title: '信审', icon: 'clipboard' },
     children: [
       {
         path: 'trialManage',
@@ -302,7 +302,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/account/loanRepay/loanManage',
     name: 'account',
-    meta: { title: '账务系统', icon: 'shopmall' },
+    meta: { title: '账务系统', icon: 'money' },
     children: [
       {
         path: 'loanRepay',
@@ -352,7 +352,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/collection/teamDeploy',
     name: 'collection',
-    meta: { title: '催收系统 ', icon: 'money' },
+    meta: { title: '催收系统 ', icon: 'example' },
     children: [
       {
         path: 'teamDeploy',
@@ -385,7 +385,7 @@ export const constantRoutes = [
     redirect: '/public/repaySetting',
     name: 'public',
     alwaysShow: true,
-    meta: { title: '公共', icon: 'money' },
+    meta: { title: '公共', icon: 'people' },
     children: [
       {
         path: 'repaySetting',
@@ -432,7 +432,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'table',
         component: () => import('@/views/dashboard/index'),
-        meta: { title: '消息模版', icon: 'form' }
+        meta: { title: '消息模版', icon: 'store' }
       }
     ]
   },
@@ -445,7 +445,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'table',
         component: () => import('@/views/dashboard/index'),
-        meta: { title: '费率系统', icon: 'form' }
+        meta: { title: '费率系统', icon: 'sponsor' }
       }
     ]
   },
@@ -456,7 +456,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/power/powerManage',
     name: 'power',
-    meta: { title: ' 权限 ', icon: 'home' },
+    meta: { title: ' 权限 ', icon: 'component' },
     children: [
       {
         path: 'powerManage',
