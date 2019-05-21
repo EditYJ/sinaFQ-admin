@@ -405,14 +405,21 @@ export const constantRoutes = [
 
   //  合同系统
   {
-    path: '/form',
+    path: '/agreement',
     component: Layout,
+    name: 'agreement',
+    meta: { title: '合同系统', icon: 'form' },
     children: [
       {
-        path: 'index',
-        name: '合同系统',
-        component: () => import('@/views/dashboard/index'),
-        meta: { title: '合同系统', icon: 'form' }
+        path: 'templateManage',
+        name: 'templateManage',
+        component: () => import('@/views/agreement/templateManage/index'),
+        meta: { title: '合同模版管理', icon: 'form' }
+      }, {
+        path: 'agreeSearch',
+        name: 'agreeSearch',
+        component: () => import('@/views/agreement/agreeSearch/index'),
+        meta: { title: '合同签约查询', icon: 'form' }
       }
     ]
   },

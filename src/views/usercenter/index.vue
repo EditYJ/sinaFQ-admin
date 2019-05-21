@@ -16,7 +16,17 @@
             <el-form ref="form" :model="searchForm" label-width="80px" class="elForm">
               <el-col :span="6">
                 <el-form-item label="输入搜索:">
-                  <el-input v-model="searchForm.userMsg" size="small" placeholder="输入用户ID/姓名/注册手机号" />
+                  <el-input v-model="searchForm.userMsg" size="mini" placeholder="输入用户ID" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="6">
+                <el-form-item label="输入搜索:">
+                  <el-input v-model="searchForm.userMsg" size="mini" placeholder="姓名" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="6">
+                <el-form-item label="输入搜索:">
+                  <el-input v-model="searchForm.userMsg" size="mini" placeholder="注册手机号" />
                 </el-form-item>
               </el-col>
               <el-col :span="4">
@@ -27,7 +37,7 @@
                   </el-select>
                 </el-form-item>
               </el-col>
-              <el-col :span="4">
+              <el-col :span="5">
                 <el-form-item label="逾期状态:">
                   <el-select v-model="searchForm.overTime" size="mini" placeholder="请选择">
                     <el-option label="已逾期" value="overTime" />
@@ -35,7 +45,7 @@
                   </el-select>
                 </el-form-item>
               </el-col>
-              <el-col :span="4">
+              <el-col :span="5">
                 <el-form-item label="额度状态:">
                   <el-select v-model="searchForm.quota" size="mini" placeholder="请选择">
                     <el-option label="已逾期" value="overTime" />
@@ -43,7 +53,7 @@
                   </el-select>
                 </el-form-item>
               </el-col>
-              <el-col :span="4">
+              <el-col :span="5">
                 <el-form-item label="账号状态:">
                   <el-select v-model="searchForm.quota" size="mini" placeholder="请选择">
                     <el-option label="已逾期" value="overTime" />
@@ -51,7 +61,7 @@
                   </el-select>
                 </el-form-item>
               </el-col>
-              <el-col :span="4">
+              <el-col :span="5">
                 <el-form-item label="注册源:">
                   <el-select v-model="searchForm.quota" size="mini" placeholder="请选择">
                     <el-option label="已逾期" value="overTime" />
@@ -175,7 +185,11 @@ export default {
     },
     created() { //
 
-    }
+    },
+    queryGoods () { // 查询
+    
+    },
+    resetQuery () {},
   }
 }
 </script>
