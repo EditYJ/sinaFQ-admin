@@ -6,10 +6,9 @@
         <el-collapse-item name="1">
           <template slot="title">
             <el-col :span="4">筛选查询</el-col>
-            <el-col :span="4" :offset="10"><div class="grid-content bg-purple" /></el-col>
+            <el-col :span="2" :offset="14"><div class="grid-content bg-purple" /></el-col>
             <el-button type="primary" plain @click.stop="queryGoods">查询</el-button>
             <el-button type="primary" plain @click.stop="resetQuery">重置</el-button>
-            <el-button type="primary" plain @click.stop="topQuery">高级检索</el-button>
             </el-col>
           </template>
           <el-row>
@@ -97,7 +96,11 @@
         <el-main>
           <template>
             <el-table :data="userTableData" border style="width: 100%"  v-loading="dataLoading">
-              <el-table-column prop="allCheck" label="全选" width="60" align="center" />
+              <el-table-column label="序号" min-width="50" align="center">
+                <template slot-scope="scope">
+                  <span>{{scope.$index + 1}}</span>
+                </template>   
+              </el-table-column>
               <el-table-column prop="userId" label="用户ID" width="100" align="center" />
               <el-table-column prop="name" label="姓名" width="120" align="center">
                 <template slot-scope="scope">
@@ -106,7 +109,11 @@
                 </template>
               </el-table-column>
               <el-table-column prop="mobile" label="注册手机号" width="140" align="center" />
-              <el-table-column prop="joinDate" label="注册时间" width="140" align="center" />
+              <el-table-column prop="joinDate" label="注册时间" width="200" align="center">
+                <template slot-scope="scope">
+                  {{util.transTime(scope.row.joinDate)}}
+                </template>
+              </el-table-column>
               <el-table-column prop="isRealName" label="实名认证" width="140" align="center">
                 <template slot-scope="scope">
                   <p v-if="scope.row.isRealName==1">已实名</p>
@@ -128,7 +135,7 @@
               <el-table-column prop="limitStatus" label="额度状态" width="140" align="center">
                 <template slot-scope="scope">
                   <p v-if="scope.row.limitStatus==0">逾期冻结</p>
-                  <p v-else-if="scope.row.limitStatus==1">整除</p>
+                  <p v-else-if="scope.row.limitStatus==1">正常</p>
                   <p v-else>人工冻结</p>
                 </template>
               </el-table-column>
@@ -139,20 +146,17 @@
                 </template>
               </el-table-column>
               <el-table-column prop="source" label="注册源" width="140" align="center">
-                <template slot-scope="scope">
-                  <p v-if="scope.row.source==0">正常</p>
-                  <p v-else>冻结</p>
-                </template>
               </el-table-column>
               <el-table-column label="操作" width="260" align="center" fixed="right">
                 <template slot-scope="scope">
                   <el-button-group>
-                    　　　　　　<el-button size="mini" type="primary" @click.native.prevent="userDetail(scope.row.userId)">详情</el-button>
-                    　　　　　　<el-button size="mini" type="danger" @click.native.prevent="noLogin(scope.row.userId)">禁止登录</el-button>
-                    <!-- 　　　　　　<el-button size="mini" type="success" @click.native.prevent="allowLogin(scope.row.userId)">允许登录</el-button> -->
-                    　　　　　　<el-button size="mini" type="info" @click.native.prevent="removeQuota(scope.row.userId)">解冻额度</el-button>
+          　　　　　　<el-button size="mini" type="primary" @click.native.prevent="userDetail(scope.row.userId)">详情</el-button>
+          　　　　　　<el-button size="mini" type="danger" v-show="scope.row.userStatus==='0'" @click.native.prevent="noLogin(scope.row.userId)">禁止登录</el-button>
+          　　　　　　<el-button size="mini" type="success" v-show="scope.row.userStatus==='1'" @click.native.prevent="allowLogin(scope.row.userId)">允许登录</el-button>
+          　　　　　　<el-button size="mini" type="warning" v-show="scope.row.limitStatus==='2'" @click.native.prevent="removeQuota(scope.row.userId)">解冻额度</el-button>
+                    <el-button size="mini" type="danger" v-show="scope.row.limitStatus==='1' && scope.row.isRealName==='1'" @click.native.prevent="stopQuota(scope.row.userId)">冻结额度</el-button>
                   </el-button-group>
-                　　　　</template>
+          　　　　</template>
               </el-table-column>
             </el-table>
           </template>
@@ -200,12 +204,11 @@ export default {
       this.getUserList()
     },
     resetQuery (val) { // 重置
+      this.dataLoading = true
       for(let i in this.searchForm) {
         this.searchForm[i] = ''
       }
-    },
-    topQuery (val) { // 高级检索
-    
+      this.getUserList()
     },
     getUserList (val) { // 获取用户列表
       let queryData = this.queryData
@@ -227,6 +230,9 @@ export default {
     
     },
     removeQuota (val) { // 解除额度
+
+    },
+    stopQuota (val) { // 冻结额度
 
     },
   }
