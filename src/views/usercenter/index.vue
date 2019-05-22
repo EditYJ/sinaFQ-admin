@@ -178,13 +178,13 @@ export default {
       }]
     }
   },
+  created() {
+    
+  },
   methods: {
     // 查看用户详情
     seeInfo() {
       	this.$router.push({ name: 'userDetail', query: { id: '12' }})
-    },
-    created() { //
-
     },
     queryGoods () { // 查询
     

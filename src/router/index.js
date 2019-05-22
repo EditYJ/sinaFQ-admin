@@ -153,7 +153,6 @@ export const constantRoutes = [
       }
     ]
   },
-
   //  订单
   {
     path: '/order',
@@ -240,7 +239,6 @@ export const constantRoutes = [
       }
     ]
   },
-
   //  信审
   {
     path: '/trial',
@@ -377,7 +375,6 @@ export const constantRoutes = [
       }
     ]
   },
-
   //  公共
   {
     path: '/public',
@@ -402,7 +399,6 @@ export const constantRoutes = [
       }
     ]
   },
-
   //  合同系统
   {
     path: '/agreement',
@@ -449,7 +445,6 @@ export const constantRoutes = [
       }
     ]
   },
-
   //  权限
   {
     path: '/power',
@@ -462,20 +457,21 @@ export const constantRoutes = [
         path: 'powerManage',
         name: 'powerManage',
         meta: { title: '角色管理', icon: 'user' },
-        component: () => import('@/views/power/roleManage') // Parent router-view
+        component: () => import('@/views/power/roleManage')
       }, {
         path: 'staffManage',
         name: 'staffManage',
         meta: { title: '员工管理', icon: 'user' },
-        component: () => import('@/views/power/staffManage') // Parent router-view
+        component: () => import('@/views/power/staffManage')
       }, {
         path: 'dailyManage',
         name: 'dailyManage',
         meta: { title: '操作日志', icon: 'user' },
-        component: () => import('@/views/power/dailyManage') // Parent router-view
+        component: () => import('@/views/power/dailyManage')
       }
     ]
   },
+  // 404
   { path: '*', redirect: '/404', hidden: true }
 ]
 
