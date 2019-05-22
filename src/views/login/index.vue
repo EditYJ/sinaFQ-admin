@@ -50,7 +50,6 @@
 
 <script>
 import { isvalidUsername } from '@/utils/validate'
-import { getUserList } from '@/api/user'
 
 export default {
   name: 'Login',
@@ -85,6 +84,9 @@ export default {
       passwordType: 'password',
       redirect: undefined
     }
+  },
+  created() {
+    
   },
   watch: {
     $route: {

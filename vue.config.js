@@ -1,8 +1,10 @@
 'use strict'
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
-const port = 9528 // dev port
-const TEST_URL = `http://localhost:${port}/mock`
+// const port = 9528 // dev port
+// const TEST_URL = `http://localhost:${port}/mock`
+const port = 8012
+const TEST_URL = `http://21.0.0.6:${port}/userManage`
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -33,16 +35,8 @@ module.exports = {
         }
       }
 
-      // '/api':{
-      //   target:'http://21.0.0.6:8012/userManage',
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     ['^' + process.env.VUE_APP_BASE_API]: ''
-      //   }
-      // }
-
-    },
-    after: require('./mock/mock-server.js')
+    }
+    // after: require('./mock/mock-server.js')
   },
   configureWebpack: {
     name: name,

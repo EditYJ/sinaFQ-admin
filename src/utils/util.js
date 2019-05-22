@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-empty */
 /**
  * 工具类
@@ -461,15 +462,27 @@ util.validateAZ09Chart = function(value) {
   const reg = /^[A-Za-z0-9]+$/
   return reg.test(value)
 }
-// 按enter查询
-// util.keyupEnter =function(handleFilter){
-//   document.onkeydown = e =>{
-//     let body = document.getElementsByTagName('body')[0]
-//     if (e.keyCode === 13  && e.target === body) {
-//       handleFilter()
-//     }
-//   }
-// }
+
+/* 判断传入参数的类型，以字符串的形式返回 */
+util.dataType = function(obj) {
+  if (obj === null) return 'Null'
+  if (obj === undefined) return 'Undefined'
+  return Object.prototype.toString.call(obj).slice(8, -1)
+}
+
+/* 处理对象参数值，排除对象参数值为”“、null、undefined，并返回一个新对象 */
+util.dealObjectValue = function(obj) {
+  var param = {}
+  if (obj === null || obj === undefined || obj === '') return param
+  for (var key in obj) {
+    if (util.dataType(obj[key]) === 'Object') {
+      param[key] = dealObjectValue(obj[key])
+    } else if (obj[key] !== null && obj[key] !== undefined && obj[key] !== '') {
+      param[key] = obj[key]
+    }
+  }
+  return param
+}
 
 export {
   util
