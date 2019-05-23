@@ -8,3 +8,21 @@ export function getUserList(data) {
     data
   })
 }
+
+// 用户管理-修改额度状态
+export function updateLimitStatus(data) {
+  return request({
+    url: '/updateLimitStatus',
+    method: 'post',
+    data
+  })
+}
+
+// 用户管理-修改用户状态
+export function updateUserStatus(data) {
+  return request({
+    url: `/updateLimitStatus?userId=${data.userId}&status=${data.status}`,
+    method: 'post',
+    data
+  })
+}

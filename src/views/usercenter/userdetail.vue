@@ -12,13 +12,13 @@
         <template>
           <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
             <el-tab-pane :key="'baseMsg'" label="基本信息" name="baseMsg">
-              <tab-base />
+              <tab-base :userId="userId" v-if="activeName==='baseMsg'"/>
             </el-tab-pane>
             <el-tab-pane :key="'quotaMsg'" label="额度信息" name="quotaMsg">
-              <tab-quota />
+              <tab-quota :userId="userId" v-if="activeName==='quotaMsg'"/>
             </el-tab-pane>
             <el-tab-pane :key="'couponMsg'" label="优惠券信息" name="couponMsg">
-              <tab-coupon />
+              <tab-coupon :userId="userId" v-if="activeName==='couponMsg'"/>
             </el-tab-pane>
           </el-tabs>
         </template>
@@ -42,13 +42,16 @@ export default {
   components: { tabBase, tabQuota, tabCoupon },
   data() {
     return {
-      activeName: 'baseMsg'
+      activeName: 'baseMsg',
+      userId:''
     }
+  },
+  created () {
+    this.userId = this.$route.query.id
   },
   methods: {
     handleClick (val) {
       const tabName = val.name
-      console.log(tabName)
     },
     backPage () {
       this.$router.go(-1)

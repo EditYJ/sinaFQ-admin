@@ -59,6 +59,7 @@
 <script>
 export default {
   name: 'Tabcoupon',
+  props:['userId'],
   data() {
     return {
       couponType: '',
@@ -83,7 +84,7 @@ export default {
       couponMsg: [{}]
     }
   },
-  mounted() {
+  created () {
     console.log('优惠券信息')
   },
   methods: {

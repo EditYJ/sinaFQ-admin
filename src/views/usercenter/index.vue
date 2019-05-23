@@ -151,10 +151,10 @@
                 <template slot-scope="scope">
                   <el-button-group>
           　　　　　　<el-button size="mini" type="primary" @click.native.prevent="userDetail(scope.row.userId)">详情</el-button>
-          　　　　　　<el-button size="mini" type="danger" v-show="scope.row.userStatus==='0'" @click.native.prevent="noLogin(scope.row.userId)">禁止登录</el-button>
-          　　　　　　<el-button size="mini" type="success" v-show="scope.row.userStatus==='1'" @click.native.prevent="allowLogin(scope.row.userId)">允许登录</el-button>
-          　　　　　　<el-button size="mini" type="warning" v-show="scope.row.limitStatus==='2'" @click.native.prevent="removeQuota(scope.row.userId)">解冻额度</el-button>
-                    <el-button size="mini" type="danger" v-show="scope.row.limitStatus==='1' && scope.row.isRealName==='1'" @click.native.prevent="stopQuota(scope.row.userId)">冻结额度</el-button>
+          　　　　　　<el-button size="mini" type="danger" v-show="scope.row.userStatus==='0'" @click.native.prevent="updateLogin(scope.row,'禁止')">禁止登录</el-button>
+          　　　　　　<el-button size="mini" type="success" v-show="scope.row.userStatus==='1'" @click.native.prevent="updateLogin(scope.row,'允许')">允许登录</el-button>
+          　　　　　　<el-button size="mini" type="warning" v-show="scope.row.limitStatus==='2'" @click.native.prevent="updateQuota(scope.row,'解冻')">解冻额度</el-button>
+                    <el-button size="mini" type="danger" v-show="scope.row.limitStatus==='1' && scope.row.isRealName==='1'" @click.native.prevent="updateQuota(scope.row,'冻结')">冻结额度</el-button>
                   </el-button-group>
           　　　　</template>
               </el-table-column>
@@ -169,7 +169,7 @@
 <script>
 
 import Titlecontent from '../../components/Titlecontent/index'
-import { getUserList } from '@/api/userManage'
+import { getUserList, updateLimitStatus, updateUserStatus} from '@/api/userManage'
 import { util } from '@/utils/util'
 export default {
   components: { Titlecontent },
@@ -188,7 +188,7 @@ export default {
         joinDateStart:'',
         joinDateEnd:'',
       },
-      queryData:{
+      pageData:{
         pageSize : 10,
         pageNum : 0,
       },
@@ -203,7 +203,7 @@ export default {
       this.dataLoading = true
       this.getUserList()
     },
-    resetQuery (val) { // 重置
+    resetQuery (val) { // 重置查询条件
       this.dataLoading = true
       for(let i in this.searchForm) {
         this.searchForm[i] = ''
@@ -211,11 +211,11 @@ export default {
       this.getUserList()
     },
     getUserList (val) { // 获取用户列表
-      let queryData = this.queryData
+      let pageData = this.pageData
       if(util.dealObjectValue(this.searchForm)) {
-        queryData = {...queryData, ...util.dealObjectValue(this.searchForm)}
+        pageData = {...pageData, ...util.dealObjectValue(this.searchForm)}
       }
-      getUserList(queryData).then(res=>{
+      getUserList(pageData).then(res=>{
         this.userTableData = res.body
         this.dataLoading = false
       })
@@ -223,18 +223,62 @@ export default {
     userDetail (val) { // 查看用户详情
       this.$router.push({ name: 'userDetail', query: { id: val }})
     },
-    noLogin (val) { // 禁止登录
-
+    updateLogin (val,title) { // 跟新登录权限
+      this.$confirm(`此操作将${title}该用户登录, 是否继续?`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'danger'
+      }).then(() => {
+        this.dataLoading = false
+        let data = {
+          userId : val.userId,
+          status : val.userStatus
+        }
+        updateLimitStatus(data).then((res)=>{
+          if(res.header.code==='200') {
+            this.getUserList()
+            this.dataLoading = false
+            this.$message({
+              type: 'success',
+              message: '操作成功'
+            })
+          }
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消操作'
+        })       
+      })
     },
-    allowLogin (val) { // 允许登录
-    
-    },
-    removeQuota (val) { // 解除额度
-
-    },
-    stopQuota (val) { // 冻结额度
-
-    },
+    updateQuota (val,title) { // 跟新额度权限
+      this.$confirm(`此操作将${title}该用户额度, 是否继续?`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'danger'
+      }).then(() => {
+        this.dataLoading = false
+        let data = {
+          userId : val.userId,
+          status : val.userStatus
+        }
+        updateUserStatus(data).then((res)=>{
+          if(res.header.code==='200') {
+            this.getUserList()
+            this.dataLoading = false
+            this.$message({
+              type: 'success',
+              message: '操作成功'
+            })
+          }
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消操作'
+        })       
+      })
+    }
   }
 }
 </script>

@@ -471,6 +471,32 @@ export const constantRoutes = [
       }
     ]
   },
+  // 运营
+  {
+    path: '/operate',
+    component: Layout,
+    redirect: '/operate/indexManage',
+    name: 'operate',
+    meta: { title: '运营', icon: 'component' },
+    children: [
+      {
+        path: 'indexManage',
+        name: 'indexManage',
+        meta: { title: '主页管理' },
+        component: () => import('@/views/operate/indexManage')
+      }, {
+        path: 'activeManage',
+        name: 'activeManage',
+        meta: { title: '活动页管理' },
+        component: () => import('@/views/operate/activeManage')
+      }, {
+        path: 'couponManage',
+        name: 'couponManage',
+        meta: { title: '优惠券管理' },
+        component: () => import('@/views/operate/couponManage')
+      }
+    ]
+  },
   // 404
   { path: '*', redirect: '/404', hidden: true }
 ]

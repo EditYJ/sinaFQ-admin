@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  props:['userId'],
   data() {
     return {
       quotaMsg: [{

@@ -4,7 +4,7 @@
       <el-header>
         个人信息
       </el-header>
-      <el-main>
+      <el-main v-loading="dataLoading">
         <el-row class="userInfoTable">
           <user-info-table :table-name="'姓名'" :table-data="userInfoTable.name" />
           <user-info-table :table-name="'紧急联系人'" :table-data="userInfoTable.name" />
@@ -21,7 +21,7 @@
           <user-info-table :table-name="'注册手机号'" :table-data="userInfoTable.name" />
           <user-info-table :table-name="'工作信息附件'">
             <template slot="userbtn">
-              <el-button type="primary" size="mini">查看</el-button>
+              <el-button type="primary" size="mini" @click.native.prevent="workInfo">查看</el-button>
             </template>
           </user-info-table>
         </el-row>
@@ -89,8 +89,10 @@
 import userInfoTable from './userInfoTable'
 export default {
   components: { userInfoTable },
+  props:['userId'],
   data() {
     return {
+      dataLoading:false,
       userInfoTable: {
         name: '王*'
       },
@@ -125,26 +127,34 @@ export default {
         time: '1231'
       }]
     }
+  },
+  created () {
+    this.getAllMsg()
+  },
+  methods: {
+
+    workInfo () {
+      
+    },
   }
 }
 </script>
 
 <style lang="scss" scoped>
     .tab-container-userInfo{
-        .el-header{
-            color: #666666;
-            font-size: 14px;
-            font-weight: 500;
-            height: 40px!important;
-            line-height: 40px;
-        }
-        .el-main{
-            padding: 10px 20px;
-        }
-        .userInfoTable{
-            border-bottom: 2px solid rgba(153, 153, 153, 0.14);
-            border-right: 2px solid rgba(153, 153, 153, 0.14);
-        }
-
+      .el-header{
+          color: #666666;
+          font-size: 14px;
+          font-weight: 500;
+          height: 40px!important;
+          line-height: 40px;
+      }
+      .el-main{
+          padding: 10px 20px;
+      }
+      .userInfoTable{
+          border-bottom: 2px solid rgba(153, 153, 153, 0.14);
+          border-right: 2px solid rgba(153, 153, 153, 0.14);
+      }
     }
 </style>
