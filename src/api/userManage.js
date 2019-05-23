@@ -26,3 +26,12 @@ export function updateUserStatus(data) {
     data
   })
 }
+
+// 用户管理-获取用户基本信息
+export function searchManageInfo(data) {
+  return request({
+    url: `/searchManageInfo?userId=${data.userId}`,
+    method: 'post',
+    data
+  })
+}
